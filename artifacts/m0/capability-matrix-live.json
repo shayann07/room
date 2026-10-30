@@ -42,7 +42,8 @@
         "passed": true,
         "registered_with_provider": true,
         "live_tool_result": null,
-        "codex_appserver_host_mediated": null
+        "codex_appserver_host_mediated": null,
+        "antigravity_narrow_allow": null
       },
       "idle_wake": "unverified"
     },
@@ -111,7 +112,8 @@
             }
           ],
           "source": "Codex app-server host-mediated approval"
-        }
+        },
+        "antigravity_narrow_allow": null
       },
       "idle_wake": "unverified"
     },
@@ -165,7 +167,22 @@
           "workspace_changed": false,
           "source": "captured registered-MCP CLI output"
         },
-        "codex_appserver_host_mediated": null
+        "codex_appserver_host_mediated": null,
+        "antigravity_narrow_allow": {
+          "status": "delivery_pass",
+          "provider": "antigravity",
+          "settings_path": "~/.gemini/antigravity-cli/settings.json",
+          "allow_rule": "mcp(room-m0/room_post)",
+          "room_event": {
+            "author": "antigravity",
+            "text": "LIVE_MCP_ALLOW2_ACK",
+            "kind": "live_mcp_ack",
+            "idempotency_key": "live-mcp:antigravity-allow2:1"
+          },
+          "workspace_changed": false,
+          "bypass_flags_used": false,
+          "idle_wake": "not tested"
+        }
       },
       "idle_wake": "unverified"
     }
@@ -173,7 +190,7 @@
   "room_proof": {
     "simulated_lifecycle": "pass",
     "sqlite_wal_preflight": "pass",
-    "native_room_connector": "Codex app-server host-mediated delivery passed; CLI and Antigravity approval denials remain"
+    "native_room_connector": "Codex app-server and Antigravity narrow-allow delivery passed; default CLI approval denials remain"
   },
   "platform": {
     "host": "Windows",
@@ -183,7 +200,7 @@
     "interpretation": "The planned Linux-through-WSL2 managed runtime cannot be validated on this machine yet. Native Windows executable discovery remains separate evidence and does not prove WSL or cross-boundary connectivity."
   },
   "provider_approval": {
-    "status": "live evidence; no permission policy changes made",
+    "status": "live evidence; one narrow Antigravity allow rule approved",
     "claude": {
       "finding": "weekly provider limit prevented a tool-call attempt",
       "next_step": "wait for reset or use a separately approved supported path; no account rotation"
@@ -193,16 +210,16 @@
       "next_step": "host-mediated app-server approval succeeded for one turn; codex exec with approval policy never still denies the call"
     },
     "antigravity": {
-      "finding": "room-m0 was discovered and room_post was attempted, then denied by the request-review permission check; headless output says MCP approval was unavailable",
-      "next_step": "an explicitly reviewed permissions.allow rule for this local MCP target, if supported; do not use --dangerously-skip-permissions"
+      "finding": "default headless request-review denied room_post; the documented narrow allow rule then enabled delivery",
+      "next_step": "keep the exact mcp(room-m0/room_post) rule; do not broaden it or use --dangerously-skip-permissions"
     },
     "room_event_written": true,
     "idle_wake": "unverified"
   },
   "limits": [
-    "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
+    "Default CLI MCP calls were denied; host-mediated Codex and narrow-allow Antigravity paths wrote verified events.",
     "Codex app-server host-mediated approval produced one verified Codex-authored Room event.",
-    "Codex and Antigravity permission behavior requires a separate reviewed policy decision.",
+    "The Antigravity rule is narrow to room-m0/room_post; broader permission changes remain out of scope.",
     "Claude was rate-limited, so no Claude acknowledgement was available.",
     "Idle wake requires a separate supported runtime experiment."
   ]

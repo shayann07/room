@@ -22,6 +22,9 @@ artifacts/m0/live-mcp/codex-appserver-result.json
 artifacts/m0/live-mcp/antigravity-auto-stdout.txt
 artifacts/m0/live-mcp/antigravity-auto-stderr.txt
 artifacts/m0/live-mcp/antigravity-auto-exit.txt
+artifacts/m0/live-mcp/antigravity-allow-stdout.txt
+artifacts/m0/live-mcp/antigravity-allow-stderr.txt
+artifacts/m0/live-mcp/antigravity-allow-exit.txt
 artifacts/m0/live-mcp/antigravity-allow2-stdout.txt
 artifacts/m0/live-mcp/antigravity-allow2-stderr.txt
 artifacts/m0/live-mcp/antigravity-allow2-exit.txt

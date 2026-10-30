@@ -67,12 +67,15 @@ def run(base=BASE, db=None):
             "room_events": appserver.get("room_events", []),
             "source": "Codex app-server host-mediated approval",
         }
+    antigravity_allow_path = base / "antigravity-allow-summary.json"
+    antigravity_allow = json.loads(antigravity_allow_path.read_text(encoding="utf-8")) if antigravity_allow_path.exists() else None
     summary = {
         "registration": "room-m0 enabled for Claude Code, Codex, and Antigravity",
         "providers_tested": providers,
         "codex_appserver_host_mediated": appserver_summary,
+        "antigravity_narrow_allow": antigravity_allow,
         "room_events_after_test": events,
-        "native_room_delivery": "Codex app-server host-mediated delivery passed; CLI and Antigravity approval denials remain",
+        "native_room_delivery": "Codex app-server and Antigravity narrow-allow delivery passed; default CLI approval denials remain",
         "model_acknowledgement_is_not_delivery": True,
         "idle_wake": "not tested",
         "bypass_flags_used": False,

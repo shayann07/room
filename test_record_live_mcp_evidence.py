@@ -24,7 +24,7 @@ class RegisteredMcpEvidenceTests(unittest.TestCase):
             (root / "codex-appserver-result.json").write_text(json.dumps({"persistent_policy_amendment": False, "bypass_flags_used": False, "room_events": [{"author": "codex", "kind": "live_mcp_ack"}]}))
             summary = run(root, db)
             self.assertEqual(summary["codex_appserver_host_mediated"]["status"], "delivery_pass")
-            self.assertIn("Codex app-server host-mediated delivery passed", summary["native_room_delivery"])
+            self.assertIn("Codex app-server", summary["native_room_delivery"])
             self.assertEqual(summary["room_events_after_test"][0]["author"], "codex")
 
 
