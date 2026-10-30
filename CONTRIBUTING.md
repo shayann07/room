@@ -38,6 +38,11 @@ After registration, the bounded native connector probe is guarded separately:
 `python live_mcp_runner.py --confirm LIVE_MCP --provider codex` (or
 `antigravity`).
 
+Codex app-server host-mediated approval is a separate experiment:
+`python codex_appserver_mcp_runner.py --confirm LIVE_APPSERVER_MCP`. It grants
+only the current turn, declines shell/file approvals, and never writes a
+persistent policy amendment.
+
 ## Design boundary
 
 Keep the visual direction in `docs/room.html` intact. Coordination belongs in

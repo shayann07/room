@@ -18,6 +18,7 @@ artifacts/m0/live-smoke/run*.json*
 artifacts/m0/live-smoke/live-room-events.json
 artifacts/m0/live-mcp/results/
 artifacts/m0/live-mcp/run.json
+artifacts/m0/live-mcp/codex-appserver-result.json
 artifacts/m0/registered-room.sqlite3*
 
 # Local editor and OS files

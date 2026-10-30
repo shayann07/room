@@ -22,8 +22,32 @@
       "source": "captured registered-MCP CLI output"
     }
   ],
-  "room_events_after_test": [],
-  "native_room_delivery": "not proven; no event was written because provider permission checks denied room_post",
+  "codex_appserver_host_mediated": {
+    "status": "delivery_pass",
+    "approval": "host accepted one MCP elicitation for this turn",
+    "persistent_policy_amendment": false,
+    "bypass_flags_used": false,
+    "room_events": [
+      {
+        "id": 1,
+        "author": "codex",
+        "text": "LIVE_MCP_ACK",
+        "kind": "live_mcp_ack",
+        "idempotency_key": "live-mcp:codex-appserver:1"
+      }
+    ],
+    "source": "Codex app-server host-mediated approval"
+  },
+  "room_events_after_test": [
+    {
+      "id": 1,
+      "author": "codex",
+      "text": "LIVE_MCP_ACK",
+      "kind": "live_mcp_ack",
+      "idempotency_key": "live-mcp:codex-appserver:1"
+    }
+  ],
+  "native_room_delivery": "Codex app-server host-mediated delivery passed; CLI and Antigravity approval denials remain",
   "model_acknowledgement_is_not_delivery": true,
   "idle_wake": "not tested",
   "bypass_flags_used": false

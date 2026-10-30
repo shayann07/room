@@ -41,7 +41,8 @@
       "room_mcp_preflight": {
         "passed": true,
         "registered_with_provider": true,
-        "live_tool_result": null
+        "live_tool_result": null,
+        "codex_appserver_host_mediated": null
       },
       "idle_wake": "unverified"
     },
@@ -94,6 +95,22 @@
           "tool_ack_seen": true,
           "workspace_changed": false,
           "source": "captured registered-MCP CLI output"
+        },
+        "codex_appserver_host_mediated": {
+          "status": "delivery_pass",
+          "approval": "host accepted one MCP elicitation for this turn",
+          "persistent_policy_amendment": false,
+          "bypass_flags_used": false,
+          "room_events": [
+            {
+              "id": 1,
+              "author": "codex",
+              "text": "LIVE_MCP_ACK",
+              "kind": "live_mcp_ack",
+              "idempotency_key": "live-mcp:codex-appserver:1"
+            }
+          ],
+          "source": "Codex app-server host-mediated approval"
         }
       },
       "idle_wake": "unverified"
@@ -147,7 +164,8 @@
           "tool_ack_seen": false,
           "workspace_changed": false,
           "source": "captured registered-MCP CLI output"
-        }
+        },
+        "codex_appserver_host_mediated": null
       },
       "idle_wake": "unverified"
     }
@@ -155,7 +173,7 @@
   "room_proof": {
     "simulated_lifecycle": "pass",
     "sqlite_wal_preflight": "pass",
-    "native_room_connector": "registered; provider tool calls denied"
+    "native_room_connector": "Codex app-server host-mediated delivery passed; CLI and Antigravity approval denials remain"
   },
   "platform": {
     "host": "Windows",
@@ -172,17 +190,18 @@
     },
     "codex": {
       "finding": "room-m0 was discovered and room_post was attempted, then rejected because the approval policy was never",
-      "next_step": "host-mediated MCP approval or an explicitly reviewed Codex policy; do not use bypass flags"
+      "next_step": "host-mediated app-server approval succeeded for one turn; codex exec with approval policy never still denies the call"
     },
     "antigravity": {
       "finding": "room-m0 was discovered and room_post was attempted, then denied by the request-review permission check; headless output says MCP approval was unavailable",
       "next_step": "an explicitly reviewed permissions.allow rule for this local MCP target, if supported; do not use --dangerously-skip-permissions"
     },
-    "room_event_written": false,
+    "room_event_written": true,
     "idle_wake": "unverified"
   },
   "limits": [
     "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
+    "Codex app-server host-mediated approval produced one verified Codex-authored Room event.",
     "Codex and Antigravity permission behavior requires a separate reviewed policy decision.",
     "Claude was rate-limited, so no Claude acknowledgement was available.",
     "Idle wake requires a separate supported runtime experiment."

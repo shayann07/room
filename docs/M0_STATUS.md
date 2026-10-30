@@ -35,6 +35,10 @@ provider interfaces without claiming unsupported behavior.
 - Codex reported an approval policy of `never`; Antigravity's headless
   request-review mode denied the MCP call. The exact findings are recorded in
   `artifacts/m0/provider-approval-findings.json`.
+- A separate Codex app-server probe used `approvalPolicy: on-request` and a
+  host-mediated, turn-only MCP elicitation approval. `room_post` completed and
+  wrote a Codex-authored event without a persistent policy amendment. This is
+  the first verified native Room delivery path; idle wake remains open.
 - A bounded Room wait can receive an event while its connector process is
   active. This does not prove that an idle provider session will start a new
   turn. Idle wake remains unverified.

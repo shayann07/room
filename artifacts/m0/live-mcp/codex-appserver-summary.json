@@ -1,0 +1,15 @@
+{
+  "status": "delivery_pass",
+  "provider": "codex",
+  "transport": "codex app-server over stdio",
+  "approval": "host accepted one MCP elicitation for this turn",
+  "persistent_policy_amendment": false,
+  "bypass_flags_used": false,
+  "room_event": {
+    "author": "codex",
+    "text": "LIVE_MCP_ACK",
+    "kind": "live_mcp_ack",
+    "idempotency_key": "live-mcp:codex-appserver:1"
+  },
+  "idle_wake": "not tested"
+}

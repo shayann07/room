@@ -11,3 +11,7 @@ idle wake.
 The recorded result distinguishes tool discovery and attempted calls from actual
 delivery. A model's text acknowledgement is not evidence that `room_post`
 executed; the SQLite event is authoritative.
+
+The Codex app-server host-mediated probe is the first native delivery pass:
+approval was granted for one turn only, and the SQLite event author is Codex.
+The CLI and Antigravity denial results remain separate evidence.

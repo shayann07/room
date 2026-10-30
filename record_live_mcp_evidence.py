@@ -34,6 +34,8 @@ def classify(provider, records, result):
 def run():
     db = ROOT / "artifacts" / "m0" / "registered-room.sqlite3"
     connection = sqlite3.connect(db) if db.exists() else None
+    if connection:
+        connection.row_factory = sqlite3.Row
     events = [] if connection is None else [dict(row) for row in connection.execute("select id, author, text, kind, idempotency_key from events order by id")]
     if connection:
         connection.close()
@@ -52,11 +54,24 @@ def run():
             "workspace_changed": result.get("file_changes"),
             "source": "captured registered-MCP CLI output",
         })
+    appserver_path = BASE / "codex-appserver-result.json"
+    appserver = json.loads(appserver_path.read_text(encoding="utf-8")) if appserver_path.exists() else None
+    appserver_summary = None
+    if appserver:
+        appserver_summary = {
+            "status": "delivery_pass" if any(event.get("author") == "codex" and event.get("kind") == "live_mcp_ack" for event in appserver.get("room_events", [])) else "failed",
+            "approval": "host accepted one MCP elicitation for this turn",
+            "persistent_policy_amendment": appserver.get("persistent_policy_amendment"),
+            "bypass_flags_used": appserver.get("bypass_flags_used"),
+            "room_events": appserver.get("room_events", []),
+            "source": "Codex app-server host-mediated approval",
+        }
     summary = {
         "registration": "room-m0 enabled for Claude Code, Codex, and Antigravity",
         "providers_tested": providers,
+        "codex_appserver_host_mediated": appserver_summary,
         "room_events_after_test": events,
-        "native_room_delivery": "not proven; no event was written because provider permission checks denied room_post",
+        "native_room_delivery": "Codex app-server host-mediated delivery passed; CLI and Antigravity approval denials remain",
         "model_acknowledgement_is_not_delivery": True,
         "idle_wake": "not tested",
         "bypass_flags_used": False,

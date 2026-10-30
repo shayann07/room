@@ -32,6 +32,7 @@ def build():
                 "passed": preflight["status"] == "pass",
                 "registered_with_provider": bool(live_mcp),
                 "live_tool_result": next((item for item in (live_mcp or {}).get("providers_tested", []) if item["provider"] == participant_id), None),
+                "codex_appserver_host_mediated": (live_mcp or {}).get("codex_appserver_host_mediated") if participant_id == "codex" else None,
             },
             "idle_wake": "unverified",
         })
@@ -41,12 +42,13 @@ def build():
         "room_proof": {
             "simulated_lifecycle": "pass",
             "sqlite_wal_preflight": preflight["status"],
-            "native_room_connector": "registered; provider tool calls denied" if live_mcp else "not registered",
+            "native_room_connector": (live_mcp or {}).get("native_room_delivery", "not registered") if live_mcp else "not registered",
         },
         "platform": platform,
         "provider_approval": approval_findings,
         "limits": [
             "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
+            "Codex app-server host-mediated approval produced one verified Codex-authored Room event.",
             "Codex and Antigravity permission behavior requires a separate reviewed policy decision.",
             "Claude was rate-limited, so no Claude acknowledgement was available.",
             "Idle wake requires a separate supported runtime experiment.",

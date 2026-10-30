@@ -39,6 +39,10 @@ compatibility.
 the local help syntax. It is a dry run; executing those commands would change
 provider configuration and now records the explicitly approved registration.
 
+`live-mcp/codex-appserver-summary.json` records the follow-up Codex app-server
+host-mediated pass: one MCP elicitation was accepted for one turn, and the
+authoritative SQLite event was written as Codex.
+
 `mcp_preflight.py` runs a clean SQLite-backed handshake and validates those
 command templates without invoking any provider configuration command. Its
 result is written to `mcp-preflight.json`.
