@@ -68,7 +68,8 @@ assignment state.
 
 ## Connector strategy
 
-Room exposes one local authenticated API with three operations:
+Room exposes the canonical [Room Link Protocol](ROOM_LINK_PROTOCOL.md), a
+local authenticated API with three operations:
 
 ```text
 room.check_in(project, participant, cursor) -> baton + relevant messages
@@ -76,15 +77,16 @@ room.post(project, participant, typed_message, idempotency_key)
 room.claim(project, participant, assignment, baton_revision)
 ```
 
-Provider-specific connectors translate that API into the supported interface:
+Provider-specific sidecars translate that API into the supported interface:
 
 - Codex app-server or an active-turn MCP tool when available.
 - Claude Code's documented CLI/session hooks and MCP tool surface.
 - Antigravity's CLI/MCP connector under its explicit permission rules.
 
-MCP is therefore a plug-in transport for `check_in`/`post`, not the authority
-model, scheduler, or wake mechanism. The UI displays the room and baton only;
-private provider session history remains private.
+MCP is not required. It can be a compatibility bridge for existing setups,
+but it is not the authority model, scheduler, or wake mechanism. The UI
+displays the room and baton only; private provider session history remains
+private.
 
 ## Small implementation path
 
