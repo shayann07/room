@@ -18,6 +18,8 @@ def build():
     live = {row["provider"]: row for row in load("live-smoke/live-provider-results.json")["providers"]}
     preflight = load("mcp-preflight.json")
     platform = load("platform-findings.json")
+    live_mcp_path = ARTIFACTS / "live-mcp" / "live-mcp-results.json"
+    live_mcp = load("live-mcp/live-mcp-results.json") if live_mcp_path.exists() else None
     participants = []
     for participant_id in ("claude", "codex", "antigravity"):
         participants.append({
@@ -27,7 +29,8 @@ def build():
             "live_cli_turn": live[participant_id],
             "room_mcp_preflight": {
                 "passed": preflight["status"] == "pass",
-                "registered_with_provider": False,
+                "registered_with_provider": bool(live_mcp),
+                "live_tool_result": next((item for item in (live_mcp or {}).get("providers_tested", []) if item["provider"] == participant_id), None),
             },
             "idle_wake": "unverified",
         })
@@ -37,11 +40,11 @@ def build():
         "room_proof": {
             "simulated_lifecycle": "pass",
             "sqlite_wal_preflight": preflight["status"],
-            "native_room_connector": "not registered",
+            "native_room_connector": "registered; provider tool calls denied" if live_mcp else "not registered",
         },
         "platform": platform,
         "limits": [
-            "Live smoke turns prove provider CLI participation only; they do not prove native Room delivery.",
+            "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
             "Claude was rate-limited, so no Claude acknowledgement was available.",
             "Idle wake requires a separate supported runtime experiment.",
         ],

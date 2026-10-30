@@ -1,5 +1,5 @@
 {
-  "status": "implemented and tested locally; not registered with any provider",
+  "status": "implemented and registered locally; provider tool approval still denies delivery",
   "transport": "MCP-shaped JSON-RPC over stdio; JSON fixture or SQLite/WAL store selectable",
   "identity": "fixed at process start in this fixture; no production authentication",
   "implemented_tools": ["room_sync", "room_post", "assignment_claim", "assignment_checkpoint", "assignment_submit", "decision_propose", "question_raise", "room_wait"],

@@ -37,11 +37,15 @@ compatibility.
 
 `mcp-enrollment-plan.json` contains provider-specific add/remove commands from
 the local help syntax. It is a dry run; executing those commands would change
-provider configuration and requires separate approval.
+provider configuration and now records the explicitly approved registration.
 
 `mcp_preflight.py` runs a clean SQLite-backed handshake and validates those
 command templates without invoking any provider configuration command. Its
 result is written to `mcp-preflight.json`.
+
+`live-mcp/live-mcp-results.json` records the first registered-provider attempt:
+Codex and Antigravity discovered `room-m0` but their approval policies denied
+`room_post`, and the authoritative SQLite room remained empty.
 
 `room-wait-evidence.json` records the narrower wake result: an active connector
 wait receives a new durable event, while provider idle wake remains unverified.

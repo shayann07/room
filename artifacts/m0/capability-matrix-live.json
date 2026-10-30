@@ -40,7 +40,8 @@
       },
       "room_mcp_preflight": {
         "passed": true,
-        "registered_with_provider": false
+        "registered_with_provider": true,
+        "live_tool_result": null
       },
       "idle_wake": "unverified"
     },
@@ -83,7 +84,17 @@
       },
       "room_mcp_preflight": {
         "passed": true,
-        "registered_with_provider": false
+        "registered_with_provider": true,
+        "live_tool_result": {
+          "provider": "codex",
+          "status": "mcp_call_denied",
+          "explanation": "provider discovered room-m0 and attempted room_post, but its approval policy denied the call",
+          "returncode": 0,
+          "mcp_server_marker_seen": true,
+          "tool_ack_seen": true,
+          "workspace_changed": false,
+          "source": "captured registered-MCP CLI output"
+        }
       },
       "idle_wake": "unverified"
     },
@@ -126,7 +137,17 @@
       },
       "room_mcp_preflight": {
         "passed": true,
-        "registered_with_provider": false
+        "registered_with_provider": true,
+        "live_tool_result": {
+          "provider": "antigravity",
+          "status": "mcp_call_denied",
+          "explanation": "provider discovered room-m0 and attempted room_post, but its approval policy denied the call",
+          "returncode": 0,
+          "mcp_server_marker_seen": true,
+          "tool_ack_seen": false,
+          "workspace_changed": false,
+          "source": "captured registered-MCP CLI output"
+        }
       },
       "idle_wake": "unverified"
     }
@@ -134,7 +155,7 @@
   "room_proof": {
     "simulated_lifecycle": "pass",
     "sqlite_wal_preflight": "pass",
-    "native_room_connector": "not registered"
+    "native_room_connector": "registered; provider tool calls denied"
   },
   "platform": {
     "host": "Windows",
@@ -144,7 +165,7 @@
     "interpretation": "The planned Linux-through-WSL2 managed runtime cannot be validated on this machine yet. Native Windows executable discovery remains separate evidence and does not prove WSL or cross-boundary connectivity."
   },
   "limits": [
-    "Live smoke turns prove provider CLI participation only; they do not prove native Room delivery.",
+    "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
     "Claude was rate-limited, so no Claude acknowledgement was available.",
     "Idle wake requires a separate supported runtime experiment."
   ]

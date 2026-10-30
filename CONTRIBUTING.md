@@ -29,6 +29,15 @@ Raw provider transcripts, generated protocol dumps, local executable paths, and
 runtime caches are intentionally excluded from Git. Commit redacted evidence
 summaries instead.
 
+The Windows registration helper is `scripts/register_room_mcp.ps1`. It supports
+PowerShell `-WhatIf`; review its output before any real registration. Running it
+without `-WhatIf` changes provider MCP configuration and requires an explicit
+user decision.
+
+After registration, the bounded native connector probe is guarded separately:
+`python live_mcp_runner.py --confirm LIVE_MCP --provider codex` (or
+`antigravity`).
+
 ## Design boundary
 
 Keep the visual direction in `docs/room.html` intact. Coordination belongs in

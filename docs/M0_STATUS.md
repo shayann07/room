@@ -22,12 +22,16 @@ provider interfaces without claiming unsupported behavior.
   Antigravity without workspace changes. Claude produced a structured weekly
   limit rejection; no account rotation or API-key fallback was used.
 - GitHub Actions runs the unit suite on every push and pull request.
+- The local `room-m0` stdio server is registered in Claude Code, Codex, and
+  Antigravity. Codex and Antigravity discovered it and attempted `room_post`.
 
 ## Still open
 
-- The Room MCP server has not been registered with any provider. The
-  provider-specific commands are preserved as a dry-run plan and would change
-  local provider configuration.
+- Provider approval policies denied the registered `room_post` calls, so the
+  authoritative SQLite room remained empty. A model's acknowledgement text is
+  not treated as delivery evidence.
+- Enabling provider-side MCP approval rules is a separate decision. Room has
+  not used bypass-permission flags or changed those policies.
 - A bounded Room wait can receive an event while its connector process is
   active. This does not prove that an idle provider session will start a new
   turn. Idle wake remains unverified.

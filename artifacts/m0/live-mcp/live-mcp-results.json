@@ -1,0 +1,30 @@
+{
+  "registration": "room-m0 enabled for Claude Code, Codex, and Antigravity",
+  "providers_tested": [
+    {
+      "provider": "codex",
+      "status": "mcp_call_denied",
+      "explanation": "provider discovered room-m0 and attempted room_post, but its approval policy denied the call",
+      "returncode": 0,
+      "mcp_server_marker_seen": true,
+      "tool_ack_seen": true,
+      "workspace_changed": false,
+      "source": "captured registered-MCP CLI output"
+    },
+    {
+      "provider": "antigravity",
+      "status": "mcp_call_denied",
+      "explanation": "provider discovered room-m0 and attempted room_post, but its approval policy denied the call",
+      "returncode": 0,
+      "mcp_server_marker_seen": true,
+      "tool_ack_seen": false,
+      "workspace_changed": false,
+      "source": "captured registered-MCP CLI output"
+    }
+  ],
+  "room_events_after_test": [],
+  "native_room_delivery": "not proven; no event was written because provider permission checks denied room_post",
+  "model_acknowledgement_is_not_delivery": true,
+  "idle_wake": "not tested",
+  "bypass_flags_used": false
+}

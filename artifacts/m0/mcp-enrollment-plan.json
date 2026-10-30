@@ -1,5 +1,7 @@
 {
-  "status": "dry-run only; no provider configuration changed",
+  "status": "executed with explicit approval; remove commands retained",
+  "registration_verified": "room-m0 is enabled in Claude Code, Codex, and Antigravity",
+  "review_helper": "scripts/register_room_mcp.ps1 -WhatIf",
   "server_name": "room-m0",
   "transport": "stdio",
   "command_template": "<PYTHON> <ROOM_ROOT>/room_mcp.py --db <ROOM_ROOT>/artifacts/m0/registered-room.sqlite3 --store sqlite --participant <PARTICIPANT>",
@@ -21,7 +23,7 @@
     }
   },
   "safety": [
-    "These commands would change provider MCP configuration and have not been executed.",
+    "These commands changed provider MCP configuration only after explicit approval.",
     "They do not include credentials, OAuth, API keys, or bypass-permission flags.",
     "Registration would still not prove idle wake; it would only enable a native connector smoke test.",
     "The local fixture server is unauthenticated and must not be exposed beyond loopback."
