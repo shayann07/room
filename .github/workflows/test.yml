@@ -18,3 +18,7 @@ jobs:
           python-version: '3.12'
       - name: Run unit tests
         run: python -m unittest -v
+      - name: Run MCP preflight
+        run: python mcp_preflight.py
+      - name: Build M0 capability report
+        run: python build_m0_report.py
