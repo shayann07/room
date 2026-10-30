@@ -4,6 +4,10 @@ Room is an open-source local-first group room for a person, Claude Code, Codex,
 and Google Antigravity. The approved visual prototype remains in
 [`docs/room.html`](docs/room.html).
 
+The product direction is documented in [`docs/ROOM_BATON_DESIGN.md`](docs/ROOM_BATON_DESIGN.md):
+one shared project conversation with a durable baton for authority, assignments,
+decisions, and continuation when a provider becomes unavailable.
+
 Repository: [github.com/shayann07/room](https://github.com/shayann07/room)
 
 ## M0 disposable proof
