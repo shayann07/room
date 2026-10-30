@@ -1,8 +1,10 @@
 # Simple Room design
 
 The previous baton, sidecar, and convergence-kernel designs were useful
-reviews, but they are too much machinery for the first real product. The
-problem can be solved with one shared local room and one tiny command surface.
+reviews, but the authoritative implementation now adopts Argon's stronger
+write-ahead intent, epoch fencing, locked decisions, steward roles, and
+isolated worktree handoff. The room UI remains simple; the enforcement lives
+below it.
 
 ## The product
 
@@ -63,7 +65,6 @@ for the next existing session.
 
 ## Migration
 
-`room_kernel.py`, `room_link.py`, and the MCP fixture remain useful experiments,
-but they are not required for the core user flow. The next implementation
-should expose the three commands over the existing SQLite backend and test a
-simulated quota switch from Claude to Codex.
+`room_kernel.py`, `room_link.py`, and the MCP fixture remain compatibility and
+research experiments. The lifecycle implementation is in `room_lifecycle.py`.
+It is deliberately local-only until provider hook capabilities are verified.
