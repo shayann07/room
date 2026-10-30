@@ -7,6 +7,9 @@ and Google Antigravity. The approved visual prototype remains in
 The product direction is documented in [`docs/ROOM_BATON_DESIGN.md`](docs/ROOM_BATON_DESIGN.md):
 one shared project conversation with a durable baton for authority, assignments,
 decisions, and continuation when a provider becomes unavailable.
+The deeper coordination model is [`docs/ROOM_CONVERGENCE_KERNEL.md`](docs/ROOM_CONVERGENCE_KERNEL.md):
+Room compiles authoritative state into verifiable turn packets so a provider's
+hidden session is never the source of truth.
 The connector boundary is [`docs/ROOM_LINK_PROTOCOL.md`](docs/ROOM_LINK_PROTOCOL.md):
 Room Link uses a small local HTTP/event protocol; MCP is optional compatibility,
 not a product requirement.

@@ -6,7 +6,7 @@ Working title only; naming and trademark checks are deferred. This document plan
 
 ## 1. The product we are building
 
-A persistent project group chat where Nawaz, Claude Code, Codex, and Antigravity can discuss work, receive assignments, coordinate changes, and retain decisions across sessions. The room is the primary interface. Tasks, evidence, previews, and decisions are objects inside the conversation, with optional views alongside it.
+A persistent project group chat where Nawaz, Claude Code, Codex, and Antigravity can discuss work, receive assignments, coordinate changes, and retain decisions across sessions. The room is the primary interface. Tasks, evidence, previews, and decisions are objects inside the conversation, with optional views alongside it. The convergence kernel compiles authoritative room state into a small, hashed turn packet for each provider attempt; a private provider session is context, never the project source of truth.
 
 The distinguishing behavior is that messages can cause durable, authorized work. The system records who issued an instruction, what it authorizes, which agent accepted it, what changed, and what evidence supports completion. The project does not depend on one model remembering everything or acting as its permanent manager.
 
