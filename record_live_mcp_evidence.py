@@ -10,9 +10,9 @@ ROOT = Path(__file__).parent
 BASE = ROOT / "artifacts" / "m0" / "live-mcp"
 
 
-def lines(provider):
+def lines(provider, base=BASE):
     records = []
-    for line in (BASE / "results" / provider / "stdout.txt").read_text(encoding="utf-8", errors="replace").splitlines():
+    for line in (base / "results" / provider / "stdout.txt").read_text(encoding="utf-8", errors="replace").splitlines():
         try:
             records.append(json.loads(line))
         except ValueError:
@@ -31,8 +31,9 @@ def classify(provider, records, result):
     return "unverified", "no successful MCP tool result was observed"
 
 
-def run():
-    db = ROOT / "artifacts" / "m0" / "registered-room.sqlite3"
+def run(base=BASE, db=None):
+    base = Path(base)
+    db = db or (ROOT / "artifacts" / "m0" / "registered-room.sqlite3")
     connection = sqlite3.connect(db) if db.exists() else None
     if connection:
         connection.row_factory = sqlite3.Row
@@ -41,8 +42,8 @@ def run():
         connection.close()
     providers = []
     for provider in ("codex", "antigravity"):
-        result = json.loads((BASE / "results" / provider / "result.json").read_text(encoding="utf-8"))
-        records = lines(provider)
+        result = json.loads((base / "results" / provider / "result.json").read_text(encoding="utf-8"))
+        records = lines(provider, base)
         status, explanation = classify(provider, records, result)
         providers.append({
             "provider": provider,
@@ -54,7 +55,7 @@ def run():
             "workspace_changed": result.get("file_changes"),
             "source": "captured registered-MCP CLI output",
         })
-    appserver_path = BASE / "codex-appserver-result.json"
+    appserver_path = base / "codex-appserver-result.json"
     appserver = json.loads(appserver_path.read_text(encoding="utf-8")) if appserver_path.exists() else None
     appserver_summary = None
     if appserver:
@@ -76,10 +77,10 @@ def run():
         "idle_wake": "not tested",
         "bypass_flags_used": False,
     }
-    (BASE / "live-mcp-results.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (base / "live-mcp-results.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
-    return 0
+    return summary
 
 
 if __name__ == "__main__":
-    raise SystemExit(run())
+    run()
