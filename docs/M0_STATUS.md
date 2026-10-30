@@ -36,7 +36,7 @@ its overall status is intentionally `partial`.
 - Enabling provider-side MCP approval rules is a separate decision. Room has
   not used bypass-permission flags or changed those policies.
 - Codex reported an approval policy of `never`; Antigravity's headless
-  request-review mode denied the MCP call. The exact findings are recorded in
+  request-review mode denied the MCP call until the narrow rule was approved. The exact findings are recorded in
   `artifacts/m0/provider-approval-findings.json`.
 - A separate Codex app-server probe used `approvalPolicy: on-request` and a
   host-mediated, turn-only MCP elicitation approval. `room_post` completed and
@@ -45,6 +45,10 @@ its overall status is intentionally `partial`.
 - Antigravity's documented `auto` mode was unavailable for this account; the
   CLI fell back to its default mode and still auto-denied the MCP call. No
   permission rule or bypass flag was used.
+- After explicit approval, the documented Antigravity settings path received
+  only `mcp(room-m0/room_post)`. A bounded turn then wrote an
+  Antigravity-authored Room event. The default headless policy remains denied
+  without that narrow rule.
 - A bounded Room wait can receive an event while its connector process is
   active. This does not prove that an idle provider session will start a new
   turn. Idle wake remains unverified.

@@ -1,0 +1,15 @@
+{
+  "status": "delivery_pass",
+  "provider": "antigravity",
+  "settings_path": "~/.gemini/antigravity-cli/settings.json",
+  "allow_rule": "mcp(room-m0/room_post)",
+  "room_event": {
+    "author": "antigravity",
+    "text": "LIVE_MCP_ALLOW2_ACK",
+    "kind": "live_mcp_ack",
+    "idempotency_key": "live-mcp:antigravity-allow2:1"
+  },
+  "workspace_changed": false,
+  "bypass_flags_used": false,
+  "idle_wake": "not tested"
+}

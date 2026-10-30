@@ -1,5 +1,5 @@
 {
-  "status": "live evidence; no permission policy changes made",
+  "status": "live evidence; one narrow Antigravity allow rule approved",
   "claude": {
     "finding": "weekly provider limit prevented a tool-call attempt",
     "next_step": "wait for reset or use a separately approved supported path; no account rotation"
@@ -9,8 +9,8 @@
     "next_step": "host-mediated app-server approval succeeded for one turn; codex exec with approval policy never still denies the call"
   },
   "antigravity": {
-    "finding": "room-m0 was discovered and room_post was attempted, then denied by the request-review permission check; headless output says MCP approval was unavailable",
-    "next_step": "an explicitly reviewed permissions.allow rule for this local MCP target, if supported; mode auto was unavailable and did not change the result; do not use --dangerously-skip-permissions"
+    "finding": "default headless request-review denied room_post; the documented narrow allow rule then enabled delivery",
+    "next_step": "keep the exact mcp(room-m0/room_post) rule; do not broaden it or use --dangerously-skip-permissions"
   },
   "room_event_written": true,
   "idle_wake": "unverified"

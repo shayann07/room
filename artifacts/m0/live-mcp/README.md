@@ -15,3 +15,7 @@ executed; the SQLite event is authoritative.
 The Codex app-server host-mediated probe is the first native delivery pass:
 approval was granted for one turn only, and the SQLite event author is Codex.
 The CLI and Antigravity denial results remain separate evidence.
+
+The corrected Antigravity settings path and narrow allow rule produced a second
+native delivery pass, authored by Antigravity. The default headless policy still
+denies the call without that rule.

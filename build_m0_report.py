@@ -33,6 +33,7 @@ def build():
                 "registered_with_provider": bool(live_mcp),
                 "live_tool_result": next((item for item in (live_mcp or {}).get("providers_tested", []) if item["provider"] == participant_id), None),
                 "codex_appserver_host_mediated": (live_mcp or {}).get("codex_appserver_host_mediated") if participant_id == "codex" else None,
+                "antigravity_narrow_allow": (live_mcp or {}).get("antigravity_narrow_allow") if participant_id == "antigravity" else None,
             },
             "idle_wake": "unverified",
         })
@@ -47,9 +48,9 @@ def build():
         "platform": platform,
         "provider_approval": approval_findings,
         "limits": [
-            "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
+            "Default CLI MCP calls were denied; host-mediated Codex and narrow-allow Antigravity paths wrote verified events.",
             "Codex app-server host-mediated approval produced one verified Codex-authored Room event.",
-            "Codex and Antigravity permission behavior requires a separate reviewed policy decision.",
+            "The Antigravity rule is narrow to room-m0/room_post; broader permission changes remain out of scope.",
             "Claude was rate-limited, so no Claude acknowledgement was available.",
             "Idle wake requires a separate supported runtime experiment.",
         ],

@@ -38,6 +38,21 @@
     ],
     "source": "Codex app-server host-mediated approval"
   },
+  "antigravity_narrow_allow": {
+    "status": "delivery_pass",
+    "provider": "antigravity",
+    "settings_path": "~/.gemini/antigravity-cli/settings.json",
+    "allow_rule": "mcp(room-m0/room_post)",
+    "room_event": {
+      "author": "antigravity",
+      "text": "LIVE_MCP_ALLOW2_ACK",
+      "kind": "live_mcp_ack",
+      "idempotency_key": "live-mcp:antigravity-allow2:1"
+    },
+    "workspace_changed": false,
+    "bypass_flags_used": false,
+    "idle_wake": "not tested"
+  },
   "room_events_after_test": [
     {
       "id": 1,
@@ -45,9 +60,16 @@
       "text": "LIVE_MCP_ACK",
       "kind": "live_mcp_ack",
       "idempotency_key": "live-mcp:codex-appserver:1"
+    },
+    {
+      "id": 2,
+      "author": "antigravity",
+      "text": "LIVE_MCP_ALLOW2_ACK",
+      "kind": "live_mcp_ack",
+      "idempotency_key": "live-mcp:antigravity-allow2:1"
     }
   ],
-  "native_room_delivery": "Codex app-server host-mediated delivery passed; CLI and Antigravity approval denials remain",
+  "native_room_delivery": "Codex app-server and Antigravity narrow-allow delivery passed; default CLI approval denials remain",
   "model_acknowledgement_is_not_delivery": true,
   "idle_wake": "not tested",
   "bypass_flags_used": false
