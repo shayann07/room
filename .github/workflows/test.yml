@@ -20,5 +20,7 @@ jobs:
         run: python -m unittest -v
       - name: Run MCP preflight
         run: python mcp_preflight.py
+      - name: Generate simulated M0 evidence
+        run: python m0_harness.py --out artifacts/m0
       - name: Build M0 capability report
         run: python build_m0_report.py
