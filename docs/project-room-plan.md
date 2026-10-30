@@ -25,10 +25,10 @@ Product promise: **Say it once in the room. Preserve the decision. Keep the assi
 
 ### Design decisions made here
 
-- Capability-driven session fabric under one room: provider adapters and a local broker are the control plane; MCP is an optional active-turn tool surface, never the wake or supervision mechanism. Hide plumbing from ordinary workflow, but show actual capability limitations.
+- Room Link connectors under one room: a local authenticated HTTP/event protocol is the control plane; provider-specific sidecars translate native interfaces. MCP is historical compatibility only, never a product requirement.
 - Windows-friendly browser UI first, backed by a Linux service through WSL2 for the first managed runtime. Native Windows agent participation remains a connector path. Do not silently move or convert existing repositories.
 - One authoritative SQLite store, one scheduler, one integration authority. No combination of competing orchestration databases.
-- New React/TypeScript UI; proposed Go service for process supervision, storage, and broker APIs. Pin libraries only after small compatibility and licensing tests. Use official MCP/protocol SDKs where their relevant language implementations pass those tests.
+- New React/TypeScript UI; proposed Go service for storage, Room Link, and the browser API. Pin libraries only after small compatibility and licensing tests. Provider SDKs are optional adapter dependencies, never the authority store.
 - Start with one user and one repository per room. Multiple rooms are supported without cross-project data leakage; cross-repository transactions are deferred.
 
 ## 2. The everyday experience
@@ -140,10 +140,10 @@ The room service owns authorization, persistent messages, task transitions, and 
 ### One shared room, several provider connectors
 
 1. **Shared room:** the user creates the same project in each provider app. Room does not replace those projects, display their private sessions, or copy their repositories. It stores the common conversation and the authoritative project charter.
-2. **Provider connector:** each provider gets a small connector that lets its existing session read relevant room messages and post updates, questions, proposals, and receipts. The connector may use MCP, a native protocol, or a documented CLI hook; this is an implementation detail behind the same chat experience.
+2. **Provider connector:** each provider gets a small Room Link sidecar that lets its existing session read relevant room messages and post updates, questions, proposals, and receipts through the same local API. The sidecar may use a native protocol or documented CLI hook internally.
 3. **Lead coordination:** the user can appoint Claude (or another participant) as lead for a bounded project or feature. The lead interprets the approved request, assigns work in the room, answers agent questions, and keeps the plan current. Room records this authority; it does not invent a fourth manager model.
 
-Neither mode is silently substituted for the other. Connecting an MCP server does not by itself wake an idle model. Notifications are not universally fresh turns. A waiting MCP call may time out or be cancelled by its host; reconnection must recover from the durable cursor.
+Room Link delivery does not claim to wake an idle model. Notifications are not universally fresh turns. A sidecar may be offline or a provider may reject a turn; reconnection must recover from the durable cursor.
 
 ### Adapter capability manifest
 
@@ -159,9 +159,13 @@ Each tested tool/version declares: room read/write, structured events, context i
 - Retry delivery without model calls when possible. No paid polling loop for presence.
 - A task that cannot wake its recipient is visibly queued with a reason, not “working.”
 
-### Optional MCP tools
+### Room Link API
 
-Keep a small optional active-turn surface: `room_sync`, `room_post`, `assignment_claim`, `assignment_checkpoint`, `assignment_submit`, `decision_propose`, `question_raise`, and bounded `room_wait`. Tool credentials determine participant identity; callers cannot choose their author ID. The scheduler and provider adapters use the broker's authenticated local API and durable outbox instead of MCP calls.
+Keep the canonical connector surface small: `check-in`, `events`, `messages`,
+and `claims`. Short-lived per-project connector tokens determine participant
+identity; callers cannot choose their author ID. Provider sidecars use this API
+and the durable outbox. An MCP bridge may be added later for compatibility,
+but it is excluded from onboarding and capability requirements.
 
 ### Coordination contract
 

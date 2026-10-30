@@ -55,9 +55,9 @@ thread and turn lifecycle operations without starting a model turn.
 The host check also found that WSL is not installed, so the planned
 Windows-to-WSL managed runtime still needs a separate machine setup test.
 
-MCP enrollment help was also captured for all three tools. The commands exist,
-but no Room MCP server was registered; enrollment, active-turn delivery, and
-idle wake remain live-test questions.
+The earlier M0 experiment registered an MCP-shaped fixture and captured its
+approval limits. That experiment is retained as evidence only; MCP is not a
+Room requirement. Room Link is the canonical connector boundary.
 
 The guarded live runner is `live_smoke_runner.py`; it requires the explicit
 `--confirm LIVE_M0` token and uses disposable working directories.
@@ -65,18 +65,14 @@ The guarded live runner is `live_smoke_runner.py`; it requires the explicit
 `record_live_evidence.py` converts captured provider output into a separate live
 evidence record and a labelled local bridge without launching any provider.
 
-`room_mcp.py` provides the disposable stdio MCP-shaped connector used by the
-local tests. It is not registered with provider tools yet and does not claim to
-wake idle sessions.
+`room_link.py` provides the canonical local connector primitives used by the
+new protocol design. `room_mcp.py` remains a compatibility fixture and does not
+claim to wake idle sessions.
 
-The provider-specific registration commands are documented in
-`artifacts/m0/mcp-enrollment-plan.json`; they have not been executed.
+The old provider-specific registration commands remain under `artifacts/m0/`
+as historical evidence and are not part of onboarding.
 
-The registration plan uses the SQLite/WAL backend through
-`room_mcp.py --store sqlite`; the JSON store remains only for fixture
-compatibility.
-
-Run `python mcp_preflight.py` to verify the unregistered connector and the dry-run
-templates locally.
+Run `python mcp_preflight.py` only when reproducing the historical MCP fixture;
+it is not a Room Link health check.
 
 Run `python build_m0_report.py` to regenerate the combined M0 capability matrix.
