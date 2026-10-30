@@ -43,6 +43,9 @@ provider configuration and now records the explicitly approved registration.
 host-mediated pass: one MCP elicitation was accepted for one turn, and the
 authoritative SQLite event was written as Codex.
 
+`live-mcp/antigravity-auto-summary.json` records that Antigravity's `auto` mode
+was unavailable for this account and headless MCP permission was still denied.
+
 `mcp_preflight.py` runs a clean SQLite-backed handshake and validates those
 command templates without invoking any provider configuration command. Its
 result is written to `mcp-preflight.json`.

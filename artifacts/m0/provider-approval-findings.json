@@ -10,7 +10,7 @@
   },
   "antigravity": {
     "finding": "room-m0 was discovered and room_post was attempted, then denied by the request-review permission check; headless output says MCP approval was unavailable",
-    "next_step": "an explicitly reviewed permissions.allow rule for this local MCP target, if supported; do not use --dangerously-skip-permissions"
+    "next_step": "an explicitly reviewed permissions.allow rule for this local MCP target, if supported; mode auto was unavailable and did not change the result; do not use --dangerously-skip-permissions"
   },
   "room_event_written": true,
   "idle_wake": "unverified"

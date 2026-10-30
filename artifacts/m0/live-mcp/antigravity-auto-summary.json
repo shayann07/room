@@ -1,0 +1,12 @@
+{
+  "status": "mcp_call_denied",
+  "provider": "antigravity",
+  "requested_mode": "auto",
+  "mode_observation": "auto was unavailable for this account; CLI continued in its default mode",
+  "permission_observation": "headless MCP permission was auto-denied because it could not prompt",
+  "returncode": 0,
+  "room_event_written": false,
+  "bypass_flags_used": false,
+  "settings_changed": false,
+  "idle_wake": "not tested"
+}
