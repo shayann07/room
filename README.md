@@ -13,6 +13,9 @@ hidden session is never the source of truth.
 The simpler product path superseding that experiment is [`docs/SIMPLE_ROOM_DESIGN.md`](docs/SIMPLE_ROOM_DESIGN.md):
 one SQLite room and three commands (`read`, `say`, `claim`) used by existing
 provider sessions.
+The execution sequence is [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md),
+which separates local proof, UI, provider verification, handoff enforcement,
+and final acceptance.
 The connector boundary is [`docs/ROOM_LINK_PROTOCOL.md`](docs/ROOM_LINK_PROTOCOL.md):
 Room Link uses a small local HTTP/event protocol; MCP is optional compatibility,
 not a product requirement.
