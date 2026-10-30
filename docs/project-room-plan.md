@@ -137,11 +137,11 @@ Record the exact task and decision revisions, source event range, evidence links
 
 The room service owns authorization, persistent messages, task transitions, and integration. Small connectors translate provider interfaces. The frontend is an ordinary client with no execution credentials.
 
-### Three adapter modes, one user experience
+### One shared room, several provider connectors
 
-1. **Managed session:** an official provider protocol adapter starts, resumes, interrupts, or steers a session. This is the preferred route when a provider exposes one (for example, Codex app-server). The adapter reports structured lifecycle events to the broker.
-2. **Native active turn:** the user runs the actual coding tool. An optional MCP connection or provider hook exposes room context and messaging at turn/tool boundaries. It can use a bounded wait while the process is alive, but it does not claim to wake an idle provider.
-3. **CLI handoff:** when no managed protocol exists, the broker starts a fresh bounded CLI turn with a saved context packet, or resumes a documented session where supported. A quota, permission, or unavailable-session result becomes a durable classified stop and can trigger replacement routing.
+1. **Shared room:** the user creates the same project in each provider app. Room does not replace those projects, display their private sessions, or copy their repositories. It stores the common conversation and the authoritative project charter.
+2. **Provider connector:** each provider gets a small connector that lets its existing session read relevant room messages and post updates, questions, proposals, and receipts. The connector may use MCP, a native protocol, or a documented CLI hook; this is an implementation detail behind the same chat experience.
+3. **Lead coordination:** the user can appoint Claude (or another participant) as lead for a bounded project or feature. The lead interprets the approved request, assigns work in the room, answers agent questions, and keeps the plan current. Room records this authority; it does not invent a fourth manager model.
 
 Neither mode is silently substituted for the other. Connecting an MCP server does not by itself wake an idle model. Notifications are not universally fresh turns. A waiting MCP call may time out or be cancelled by its host; reconnection must recover from the durable cursor.
 
@@ -163,22 +163,24 @@ Each tested tool/version declares: room read/write, structured events, context i
 
 Keep a small optional active-turn surface: `room_sync`, `room_post`, `assignment_claim`, `assignment_checkpoint`, `assignment_submit`, `decision_propose`, `question_raise`, and bounded `room_wait`. Tool credentials determine participant identity; callers cannot choose their author ID. The scheduler and provider adapters use the broker's authenticated local API and durable outbox instead of MCP calls.
 
-### Session fabric and handoff contract
+### Coordination contract
 
-The broker is the only component that owns leases, assignment state, provider
-stop classification, and replacement routing. Each adapter implements a small
-contract: `probe`, `start_or_resume`, `interrupt`, `deliver`, and `capabilities`.
-The capability manifest distinguishes active-turn delivery from idle wake,
-resume, cancellation, approvals, quota classification, and containment. A
-provider is never shown as online because its process exists; it must emit a
-verified lifecycle receipt.
+The Room service owns the project charter, assignments, decisions, questions,
+and message history. Each connector implements only `read_since(cursor)`,
+`post(event)`, and `presence/health` reporting. A provider is never shown as
+online because its process exists; it must emit a verified message or receipt.
 
-When a provider stops, Room records the reason, freezes the attempt, captures
-the last verified checkpoint, and schedules an eligible replacement from the
-same approved assignment. The replacement receives the decision revisions,
-checkpoint, evidence, and unresolved questions. Claude reaching a subscription
-limit therefore changes the occupant of an assignment; it does not block the
-room or discard the work.
+The room is not a generic task runner. It does not create competing sessions,
+move files between agents, or pretend that one provider can wake another. It
+keeps the shared reasoning and authority in one place while each provider
+continues operating in its already configured project.
+
+When a provider stops, Room records the reason in the conversation and marks
+its assignments awaiting reassignment. The lead or user can assign the next
+available participant from the same room context. Claude reaching a
+subscription limit therefore leaves the plan and decisions intact; Codex or
+Antigravity continues by reading the room, not by receiving a lossy handoff
+written in a separate channel.
 
 Owner approval and merge operations are not exposed to ordinary worker tokens. Shell/native tools remain outside the MCP broker unless independently sandboxed; an MCP allowlist does not secure those side channels.
 

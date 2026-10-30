@@ -1,11 +1,12 @@
-# M0 architecture research: broker first, MCP as an adapter
+# M0 architecture research: one project room, provider connectors
 
 ## Finding
 
-Room should use one local coordination broker as its control plane. MCP remains
-an optional, narrowly scoped tool surface for an agent that is already in an
-active turn. It must not be responsible for session lifecycle, provider wake,
-quota handling, or task ownership.
+Room should be one durable project conversation and authority layer. The three
+existing provider projects remain where agents do their work. Connectors only
+bring the shared room into those projects and return messages to it. MCP may be
+one connector implementation, but it is not the product and it must not be
+responsible for session lifecycle or provider wake.
 
 This is a correction to the first M0 prototype, which used an MCP-shaped
 stdio connector as the main live path. That connector is still useful as a
@@ -30,29 +31,29 @@ conformance fixture, but it is not sufficient as the product architecture.
   Room verified both the default denial and a narrowly approved `room_post`
   delivery. This proves permissioned active-turn use, not idle wake.
 
-## Proposed control plane
+## Proposed room model
 
 ```text
-Room UI/API
+User + Room chat (charter, assignments, decisions, questions, updates)
     |
-Local broker (SQLite journal + outbox + leases + capability registry)
-    |-- Codex adapter: app-server JSONL, host-mediated approvals
-    |-- Claude adapter: CLI/SDK invocation and resume, quota classifier
-    |-- Antigravity adapter: CLI/session invocation, permission-aware MCP
-    `-- MCP adapter: active-turn room_sync/post/wait only
+SQLite event log + durable cursors + authority rules
+    |-- Claude project connector
+    |-- Codex project connector
+    `-- Antigravity project connector
 ```
 
-The broker owns assignments, decisions, leases, checkpoints, receipts,
-provider stop classification, and replacement routing. Adapters report facts;
-they do not invent liveness or claim that a provider was woken.
+Room owns assignments, decisions, questions, lead authority, and receipts.
+Connectors report facts; they do not invent liveness or claim that a provider
+was woken. Room does not expose private provider sessions in the UI.
 
 ## Why this is better
 
-1. A quota hit becomes an event (`provider_stopped: quota`) and the scheduler
-   can continue with an eligible agent using the saved checkpoint.
+1. A quota hit becomes a room event (`provider_stopped: quota`). The lead or
+   user can assign the next available agent, which reads the same authoritative
+   conversation instead of receiving a lossy handoff.
 2. A provider that cannot be woken remains visibly queued with a reason. An
    active MCP wait can reduce latency, but it is never mistaken for a wake API.
-3. Each provider uses its strongest supported interface instead of forcing all
+3. Each provider uses its strongest supported connector instead of forcing all
    three through MCP's weakest common denominator.
 4. The room can test coordination, routing, and recovery without spending model
    quota. Live calls are only conformance checks.
@@ -61,17 +62,16 @@ they do not invent liveness or claim that a provider was woken.
 
 ## M1 implementation boundary
 
-The next implementation should add an adapter contract and a broker loop:
+The next implementation should add a connector contract and chat behavior:
 
-- `AdapterCapabilities` declares active-turn delivery, resume, idle wake,
-  cancellation, approval mode, quota classification, and platform.
-- `Adapter.run(assignment, context)` returns structured lifecycle events and a
-  checkpoint reference; it does not write directly to the room database.
-- `Scheduler` consumes durable events and leases, chooses only an eligible
-  adapter, and records `queued`, `started`, `stopped`, `handoff`, and `wake`
-  outcomes.
-- `room_mcp.py` stays behind `McpActiveTurnAdapter` and is tested as an
-  optional integration. It is not used for scheduler-to-provider control.
+- `Connector.read_since(cursor)` returns the room messages relevant to one
+  provider project.
+- `Connector.post(event)` writes authenticated updates, questions, decisions,
+  and receipts; the provider cannot choose another author's identity.
+- `LeadAuthority` records who may assign work, answer questions, and revise a
+  bounded plan; owner approval remains separate.
+- `room_mcp.py` stays as one optional connector. It is not used as a scheduler
+  or session-control protocol.
 
 No provider is currently proven to support automatic idle wake on this Windows
 machine. That remains an explicit capability value, not an assumption.
