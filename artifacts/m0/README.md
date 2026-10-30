@@ -43,6 +43,10 @@ provider configuration and now records the explicitly approved registration.
 host-mediated pass: one MCP elicitation was accepted for one turn, and the
 authoritative SQLite event was written as Codex.
 
+`exit-checklist.json` is the M0 gate summary. Its `partial` status is deliberate:
+it prevents the current Codex result from being presented as all-three native
+participation while Antigravity approval and idle wake remain open.
+
 `live-mcp/antigravity-auto-summary.json` records that Antigravity's `auto` mode
 was unavailable for this account and headless MCP permission was still denied.
 

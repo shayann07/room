@@ -1,0 +1,20 @@
+{
+  "overall": "partial; do not advertise all-three native participation yet",
+  "requirements": {
+    "shared_room_fixture": {"status": "pass", "evidence": ["pass-fail.json", "room_http.py", "room_mcp.py"]},
+    "claude_interface": {"status": "observed_limit", "evidence": ["live-smoke/live-provider-results.json", "provider-approval-findings.json"]},
+    "codex_interface": {"status": "native_delivery_pass_via_app_server", "evidence": ["live-mcp/codex-appserver-summary.json"]},
+    "antigravity_interface": {"status": "registered_permission_denied", "evidence": ["live-mcp/live-mcp-results.json", "live-mcp/antigravity-auto-summary.json"]},
+    "assignment_receipts": {"status": "pass_in_fixture", "evidence": ["receipts.json", "pass-fail.json"]},
+    "restart_and_idempotency": {"status": "pass", "evidence": ["pass-fail.json", "room_sqlite.py"]},
+    "idle_wake": {"status": "unverified", "evidence": ["room-wait-evidence.json"]},
+    "wsl_runtime": {"status": "unavailable_on_test_host", "evidence": ["platform-findings.json"]}
+  },
+  "safety": {
+    "provider_settings_changed": true,
+    "registration_scope": "room-m0 only",
+    "bypass_flags_used": false,
+    "account_rotation": false,
+    "api_key_fallback": false
+  }
+}

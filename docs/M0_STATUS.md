@@ -4,6 +4,9 @@ M0 is a local-first proof, not a production release. The current public
 snapshot proves the coordination layer and investigates the three installed
 provider interfaces without claiming unsupported behavior.
 
+The machine-readable gate is [`artifacts/m0/exit-checklist.json`](../artifacts/m0/exit-checklist.json);
+its overall status is intentionally `partial`.
+
 ## Verified
 
 - The Room event store supports durable events, ordered cursors, delivery and
