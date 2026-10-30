@@ -10,6 +10,9 @@ decisions, and continuation when a provider becomes unavailable.
 The deeper coordination model is [`docs/ROOM_CONVERGENCE_KERNEL.md`](docs/ROOM_CONVERGENCE_KERNEL.md):
 Room compiles authoritative state into verifiable turn packets so a provider's
 hidden session is never the source of truth.
+The simpler product path superseding that experiment is [`docs/SIMPLE_ROOM_DESIGN.md`](docs/SIMPLE_ROOM_DESIGN.md):
+one SQLite room and three commands (`read`, `say`, `claim`) used by existing
+provider sessions.
 The connector boundary is [`docs/ROOM_LINK_PROTOCOL.md`](docs/ROOM_LINK_PROTOCOL.md):
 Room Link uses a small local HTTP/event protocol; MCP is optional compatibility,
 not a product requirement.
