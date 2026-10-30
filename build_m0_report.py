@@ -20,6 +20,7 @@ def build():
     platform = load("platform-findings.json")
     live_mcp_path = ARTIFACTS / "live-mcp" / "live-mcp-results.json"
     live_mcp = load("live-mcp/live-mcp-results.json") if live_mcp_path.exists() else None
+    approval_findings = load("provider-approval-findings.json")
     participants = []
     for participant_id in ("claude", "codex", "antigravity"):
         participants.append({
@@ -43,8 +44,10 @@ def build():
             "native_room_connector": "registered; provider tool calls denied" if live_mcp else "not registered",
         },
         "platform": platform,
+        "provider_approval": approval_findings,
         "limits": [
             "Registered MCP calls were attempted but denied by provider approval policies; no Room event was written.",
+            "Codex and Antigravity permission behavior requires a separate reviewed policy decision.",
             "Claude was rate-limited, so no Claude acknowledgement was available.",
             "Idle wake requires a separate supported runtime experiment.",
         ],

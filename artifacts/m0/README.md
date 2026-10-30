@@ -47,6 +47,10 @@ result is written to `mcp-preflight.json`.
 Codex and Antigravity discovered `room-m0` but their approval policies denied
 `room_post`, and the authoritative SQLite room remained empty.
 
+`provider-approval-findings.json` keeps those provider-specific denial causes
+separate from transport and Room implementation evidence. No permission policy
+was changed.
+
 `room-wait-evidence.json` records the narrower wake result: an active connector
 wait receives a new durable event, while provider idle wake remains unverified.
 

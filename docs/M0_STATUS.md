@@ -32,6 +32,9 @@ provider interfaces without claiming unsupported behavior.
   not treated as delivery evidence.
 - Enabling provider-side MCP approval rules is a separate decision. Room has
   not used bypass-permission flags or changed those policies.
+- Codex reported an approval policy of `never`; Antigravity's headless
+  request-review mode denied the MCP call. The exact findings are recorded in
+  `artifacts/m0/provider-approval-findings.json`.
 - A bounded Room wait can receive an event while its connector process is
   active. This does not prove that an idle provider session will start a new
   turn. Idle wake remains unverified.

@@ -1,0 +1,17 @@
+{
+  "status": "live evidence; no permission policy changes made",
+  "claude": {
+    "finding": "weekly provider limit prevented a tool-call attempt",
+    "next_step": "wait for reset or use a separately approved supported path; no account rotation"
+  },
+  "codex": {
+    "finding": "room-m0 was discovered and room_post was attempted, then rejected because the approval policy was never",
+    "next_step": "host-mediated MCP approval or an explicitly reviewed Codex policy; do not use bypass flags"
+  },
+  "antigravity": {
+    "finding": "room-m0 was discovered and room_post was attempted, then denied by the request-review permission check; headless output says MCP approval was unavailable",
+    "next_step": "an explicitly reviewed permissions.allow rule for this local MCP target, if supported; do not use --dangerously-skip-permissions"
+  },
+  "room_event_written": false,
+  "idle_wake": "unverified"
+}
