@@ -4,6 +4,8 @@ Room is an open-source local-first group room for a person, Claude Code, Codex,
 and Google Antigravity. The approved visual prototype remains in
 [`docs/room.html`](docs/room.html).
 
+Repository: [github.com/shayann07/room](https://github.com/shayann07/room)
+
 ## M0 disposable proof
 
 Run the local-only simulated proof with:
