@@ -1,0 +1,9 @@
+{
+  "status": "implemented and tested locally; not registered with any provider",
+  "transport": "MCP-shaped JSON-RPC over stdio; JSON fixture or SQLite/WAL store selectable",
+  "identity": "fixed at process start in this fixture; no production authentication",
+  "implemented_tools": ["room_sync", "room_post", "assignment_claim", "assignment_checkpoint", "assignment_submit", "decision_propose", "question_raise", "room_wait"],
+  "wake_behavior": "room_wait polls durable room events for at most 2000ms; it does not wake an idle provider and idle wake remains unverified",
+  "known_limitations": ["The JSON fixture store is not a production cross-process write-lock; M1 should move authority to SQLite WAL or an equivalent transactional store."],
+  "evidence": "test_room_mcp.py"
+}

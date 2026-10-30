@@ -1,0 +1,20 @@
+{
+  "status": "generated locally",
+  "command": ["codex", "app-server", "generate-json-schema", "--out", "artifacts/m0/codex-schema"],
+  "model_turn_started": false,
+  "network_request_requested": false,
+  "json_file_count": 320,
+  "important_files_present": {
+    "ThreadResumeParams": true,
+    "ThreadResumeResponse": true,
+    "ThreadStartParams": true,
+    "ThreadStartResponse": true,
+    "TurnStartParams": true,
+    "TurnStartResponse": true,
+    "TurnInterruptParams": true,
+    "TurnSteerParams": true,
+    "TurnCompletedNotification": true,
+    "AccountRateLimitsUpdatedNotification": true
+  },
+  "interpretation": "This verifies a local Codex app-server protocol surface. It does not verify authentication, a model turn, task completion, subscription billing behavior, or idle wake."
+}

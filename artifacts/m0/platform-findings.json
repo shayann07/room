@@ -1,0 +1,7 @@
+{
+  "host": "Windows",
+  "wsl_status": "not installed",
+  "wsl_distro_test": "not run because WSL is unavailable",
+  "room_changes": "none",
+  "interpretation": "The planned Linux-through-WSL2 managed runtime cannot be validated on this machine yet. Native Windows executable discovery remains separate evidence and does not prove WSL or cross-boundary connectivity."
+}

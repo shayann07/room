@@ -1,0 +1,29 @@
+{
+  "status": "executed; see live-smoke/live-provider-results.json",
+  "scope": "one short provider turn per existing local CLI in a disposable directory",
+  "prompt": "Reply exactly ROOM_M0_ACK. Do not edit files, run shell commands, use MCP tools, or access the network.",
+  "providers": [
+    {
+      "participant": "claude",
+      "candidate_interface": "claude -p with --output-format stream-json",
+      "resume_or_wake": "not tested by this smoke test"
+    },
+    {
+      "participant": "codex",
+      "candidate_interface": "codex app-server JSON-RPC using generated local schema",
+      "resume_or_wake": "not tested by this smoke test"
+    },
+    {
+      "participant": "antigravity",
+      "candidate_interface": "agy --print with stream-json output",
+      "resume_or_wake": "not tested by this smoke test"
+    }
+  ],
+  "safety_constraints": [
+    "Do not register or modify an MCP server.",
+    "Do not use bypass-permission flags.",
+    "Run from a disposable directory with no project credentials.",
+    "Stop if a tool asks for an approval, edits a file, or reports an unexpected provider/account path.",
+    "Record output and terminal status; do not claim Room participation until the adapter receives and acknowledges the response."
+  ]
+}

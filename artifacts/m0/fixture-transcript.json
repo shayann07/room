@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "author": "nawaz",
+    "text": "Implement the checkout change and keep the auth decision.",
+    "kind": "assignment",
+    "idempotency_key": "assignment:checkout:v1"
+  },
+  {
+    "id": 2,
+    "author": "claude",
+    "text": "Accepted. I will preserve the authentication decision.",
+    "kind": "message"
+  },
+  {
+    "id": 3,
+    "author": "codex",
+    "text": "Should the existing order endpoint remain unchanged?",
+    "kind": "question"
+  },
+  {
+    "id": 4,
+    "author": "antigravity",
+    "text": "I will review the mobile layout while implementation is in progress.",
+    "kind": "message"
+  },
+  {
+    "id": 5,
+    "author": "nawaz",
+    "text": "Continue when Codex is available.",
+    "kind": "idle_delivery"
+  },
+  {
+    "id": 6,
+    "author": "nawaz",
+    "text": "Review the mobile layout when your session returns.",
+    "kind": "disconnect_delivery"
+  }
+]

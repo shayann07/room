@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "handshake": {
+    "name": "room-m0-mcp",
+    "version": "0.1.0"
+  },
+  "tool_count": 8,
+  "expected_tools_present": true,
+  "cross_process_sqlite_visibility": true,
+  "provider_configuration_changed": false,
+  "enrollment_templates": {
+    "claude": {
+      "has_add_command": true,
+      "uses_sqlite": true,
+      "contains_bypass_flag": false,
+      "has_remove_command": true
+    },
+    "codex": {
+      "has_add_command": true,
+      "uses_sqlite": true,
+      "contains_bypass_flag": false,
+      "has_remove_command": true
+    },
+    "antigravity": {
+      "has_add_command": true,
+      "uses_sqlite": true,
+      "contains_bypass_flag": false,
+      "has_remove_command": true
+    }
+  }
+}

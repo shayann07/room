@@ -1,0 +1,101 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "author": "nawaz",
+      "text": "Implement the checkout change and keep the auth decision.",
+      "kind": "assignment",
+      "idempotency_key": "assignment:checkout:v1"
+    },
+    {
+      "id": 2,
+      "author": "claude",
+      "text": "Accepted. I will preserve the authentication decision.",
+      "kind": "message"
+    },
+    {
+      "id": 3,
+      "author": "codex",
+      "text": "Should the existing order endpoint remain unchanged?",
+      "kind": "question"
+    },
+    {
+      "id": 4,
+      "author": "antigravity",
+      "text": "I will review the mobile layout while implementation is in progress.",
+      "kind": "message"
+    },
+    {
+      "id": 5,
+      "author": "nawaz",
+      "text": "Continue when Codex is available.",
+      "kind": "idle_delivery"
+    },
+    {
+      "id": 6,
+      "author": "nawaz",
+      "text": "Review the mobile layout when your session returns.",
+      "kind": "disconnect_delivery"
+    },
+    {
+      "id": 7,
+      "author": "claude",
+      "text": "Provider limit reported; assignment remains queued for a supported replacement.",
+      "kind": "quota_like_failure"
+    }
+  ],
+  "outbox": {
+    "claude": [
+      {
+        "event_id": 1,
+        "state": "acknowledged"
+      },
+      {
+        "event_id": 3,
+        "state": "queued"
+      }
+    ],
+    "codex": [
+      {
+        "event_id": 1,
+        "state": "acknowledged"
+      },
+      {
+        "event_id": 5,
+        "state": "queued"
+      }
+    ],
+    "antigravity": [
+      {
+        "event_id": 1,
+        "state": "acknowledged"
+      },
+      {
+        "event_id": 6,
+        "state": "queued"
+      }
+    ],
+    "nawaz": [
+      {
+        "event_id": 2,
+        "state": "delivered"
+      },
+      {
+        "event_id": 3,
+        "state": "delivered"
+      },
+      {
+        "event_id": 4,
+        "state": "delivered"
+      },
+      {
+        "event_id": 7,
+        "state": "queued"
+      }
+    ]
+  },
+  "idempotency": {
+    "assignment:checkout:v1": 1
+  },
+  "next_id": 8
+}

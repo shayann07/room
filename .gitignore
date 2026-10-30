@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local runtime databases and generated evidence
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+artifacts/m0/codex-schema/
+artifacts/m0/interface-probes/
+artifacts/m0/capability-matrix.json
+artifacts/m0/account-path-findings.json
+artifacts/m0/live-smoke/results/
+artifacts/m0/live-smoke/workspaces/
+artifacts/m0/live-smoke/run*.json*
+artifacts/m0/live-smoke/live-room-events.json
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

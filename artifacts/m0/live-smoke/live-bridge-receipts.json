@@ -1,0 +1,25 @@
+[
+  {
+    "event": 1,
+    "state": "recorded",
+    "source": "local controller"
+  },
+  {
+    "event": 2,
+    "provider": "claude",
+    "state": "ingested_by_local_bridge",
+    "source": "captured provider CLI output; not native MCP"
+  },
+  {
+    "event": 3,
+    "provider": "codex",
+    "state": "ingested_by_local_bridge",
+    "source": "captured provider CLI output; not native MCP"
+  },
+  {
+    "event": 4,
+    "provider": "antigravity",
+    "state": "ingested_by_local_bridge",
+    "source": "captured provider CLI output; not native MCP"
+  }
+]

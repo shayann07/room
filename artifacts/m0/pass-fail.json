@@ -1,0 +1,17 @@
+{
+  "duplicate_assignment_deduped": true,
+  "assignment_ack_claude": true,
+  "assignment_ack_codex": true,
+  "assignment_ack_antigravity": true,
+  "agent_reply": true,
+  "agent_to_agent_question": true,
+  "unknown_agent_identity_rejected": true,
+  "delivery_during_work": true,
+  "idle_delivery_queued": true,
+  "idle_wake": false,
+  "disconnect_queues": true,
+  "restart_recovers_events": true,
+  "restart_recovers_outbox": true,
+  "restart_recovers_idempotency": true,
+  "quota_like_receipt": true
+}

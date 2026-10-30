@@ -1,0 +1,29 @@
+{
+  "status": "dry-run only; no provider configuration changed",
+  "server_name": "room-m0",
+  "transport": "stdio",
+  "command_template": "<PYTHON> <ROOM_ROOT>/room_mcp.py --db <ROOM_ROOT>/artifacts/m0/registered-room.sqlite3 --store sqlite --participant <PARTICIPANT>",
+  "registrations": {
+    "claude": {
+      "add": ["claude", "mcp", "add", "--scope", "local", "room-m0", "--", "<PYTHON>", "<ROOM_ROOT>/room_mcp.py", "--db", "<ROOM_ROOT>/artifacts/m0/registered-room.sqlite3", "--store", "sqlite", "--participant", "claude"],
+      "remove": ["claude", "mcp", "remove", "room-m0"],
+      "syntax_evidence": "interface-probes/claude-mcp-add-help.txt"
+    },
+    "codex": {
+      "add": ["codex", "mcp", "add", "room-m0", "--", "<PYTHON>", "<ROOM_ROOT>/room_mcp.py", "--db", "<ROOM_ROOT>/artifacts/m0/registered-room.sqlite3", "--store", "sqlite", "--participant", "codex"],
+      "remove": ["codex", "mcp", "remove", "room-m0"],
+      "syntax_evidence": "interface-probes/codex-mcp-add-help.txt"
+    },
+    "antigravity": {
+      "add": ["agy", "mcp", "add", "room-m0", "<PYTHON>", "<ROOM_ROOT>/room_mcp.py", "--db", "<ROOM_ROOT>/artifacts/m0/registered-room.sqlite3", "--store", "sqlite", "--participant", "antigravity"],
+      "remove": ["agy", "mcp", "remove", "room-m0"],
+      "syntax_evidence": "interface-probes/antigravity-mcp-add-help.txt"
+    }
+  },
+  "safety": [
+    "These commands would change provider MCP configuration and have not been executed.",
+    "They do not include credentials, OAuth, API keys, or bypass-permission flags.",
+    "Registration would still not prove idle wake; it would only enable a native connector smoke test.",
+    "The local fixture server is unauthenticated and must not be exposed beyond loopback."
+  ]
+}

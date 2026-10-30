@@ -1,0 +1,64 @@
+[
+  {
+    "participant": "claude",
+    "provider": "Claude Code",
+    "candidate_interface": "Claude Code print mode with stream-json",
+    "launch_argv": [
+      "claude",
+      "-p",
+      "<ROOM_PROMPT>",
+      "--input-format",
+      "stream-json",
+      "--output-format",
+      "stream-json"
+    ],
+    "resume_argv": [
+      "claude",
+      "--resume",
+      "<SESSION_ID>"
+    ],
+    "transport": "stdin/stdout NDJSON",
+    "evidence": "local help output for launch/resume flags; no provider turn started",
+    "wake": "unverified; a connector cannot infer that an idle native session will start a turn",
+    "executed": false
+  },
+  {
+    "participant": "codex",
+    "provider": "OpenAI Codex",
+    "candidate_interface": "Codex app-server",
+    "launch_argv": [
+      "codex",
+      "app-server",
+      "--listen",
+      "stdio://"
+    ],
+    "resume_method": "thread/resume",
+    "turn_method": "turn/start",
+    "transport": "JSON-RPC over stdio",
+    "evidence": "local app-server help for transport/subcommand; method names are research leads and not live-verified",
+    "wake": "unverified; requires a live app-server lifecycle test",
+    "executed": false
+  },
+  {
+    "participant": "antigravity",
+    "provider": "Google Antigravity",
+    "candidate_interface": "Antigravity CLI print mode with stream-json",
+    "launch_argv": [
+      "agy",
+      "--print",
+      "--input-format",
+      "stream-json",
+      "--output-format",
+      "stream-json"
+    ],
+    "resume_argv": [
+      "agy",
+      "--conversation",
+      "<CONVERSATION_ID>"
+    ],
+    "transport": "stdin/stdout NDJSON",
+    "evidence": "local help output for launch/resume flags; no provider turn started",
+    "wake": "unverified; requires a live continuation/idle test",
+    "executed": false
+  }
+]

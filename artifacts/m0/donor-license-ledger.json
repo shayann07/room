@@ -1,0 +1,14 @@
+[
+  {
+    "component": "Room M0 harness",
+    "source": "new code",
+    "license": "MIT (project-intended; confirm project license before release)",
+    "copied_code": false
+  },
+  {
+    "component": "Provider CLIs",
+    "source": "local executable probes only",
+    "license": "provider terms apply; no code vendored",
+    "copied_code": false
+  }
+]

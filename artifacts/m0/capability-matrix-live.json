@@ -1,0 +1,151 @@
+{
+  "status": "M0 evidence matrix; native registration and idle wake remain open",
+  "participants": [
+    {
+      "id": "claude",
+      "provider": "Claude Code",
+      "local_interface": {
+        "status": "help/version only",
+        "version": [
+          "2.1.308 (Claude Code)"
+        ],
+        "help_argv": [
+          "claude",
+          "--help"
+        ],
+        "help_exit_code": 0,
+        "help_tokens_seen": [
+          "--input-format",
+          "--output-format",
+          "stream-json",
+          "--resume"
+        ],
+        "help_tokens_missing": []
+      },
+      "live_cli_turn": {
+        "provider": "claude",
+        "status": "weekly_limit",
+        "explanation": "structured seven-day limit rejection; no provider acknowledgement",
+        "returncode": 1,
+        "timed_out": false,
+        "structured_json_lines": 4,
+        "ack_text_seen": false,
+        "file_changes": false,
+        "provider_session_observed": true,
+        "auth_observation": {
+          "child_auth_environment_sanitized": true,
+          "api_key_source": "none"
+        },
+        "source": "captured provider CLI output"
+      },
+      "room_mcp_preflight": {
+        "passed": true,
+        "registered_with_provider": false
+      },
+      "idle_wake": "unverified"
+    },
+    {
+      "id": "codex",
+      "provider": "OpenAI Codex",
+      "local_interface": {
+        "status": "help/version only",
+        "version": [
+          "codex-cli 0.166.0-alpha.5.1"
+        ],
+        "help_argv": [
+          "codex",
+          "app-server",
+          "--help"
+        ],
+        "help_exit_code": 0,
+        "help_tokens_seen": [
+          "app-server",
+          "--listen",
+          "stdio://",
+          "generate-json-schema"
+        ],
+        "help_tokens_missing": []
+      },
+      "live_cli_turn": {
+        "provider": "codex",
+        "status": "acknowledged",
+        "explanation": "provider returned ROOM_M0_ACK with no disposable workspace changes",
+        "returncode": 0,
+        "timed_out": false,
+        "structured_json_lines": 4,
+        "ack_text_seen": true,
+        "file_changes": false,
+        "provider_session_observed": true,
+        "auth_observation": {
+          "child_auth_environment_sanitized": false
+        },
+        "source": "captured provider CLI output"
+      },
+      "room_mcp_preflight": {
+        "passed": true,
+        "registered_with_provider": false
+      },
+      "idle_wake": "unverified"
+    },
+    {
+      "id": "antigravity",
+      "provider": "Google Antigravity",
+      "local_interface": {
+        "status": "help/version only",
+        "version": [
+          "1.4.11"
+        ],
+        "help_argv": [
+          "agy",
+          "--help"
+        ],
+        "help_exit_code": 0,
+        "help_tokens_seen": [
+          "--input-format",
+          "--output-format",
+          "stream-json",
+          "--conversation",
+          "--continue"
+        ],
+        "help_tokens_missing": []
+      },
+      "live_cli_turn": {
+        "provider": "antigravity",
+        "status": "acknowledged",
+        "explanation": "provider returned ROOM_M0_ACK with no disposable workspace changes",
+        "returncode": 0,
+        "timed_out": false,
+        "structured_json_lines": 6,
+        "ack_text_seen": true,
+        "file_changes": false,
+        "provider_session_observed": true,
+        "auth_observation": {
+          "child_auth_environment_sanitized": false
+        },
+        "source": "captured provider CLI output"
+      },
+      "room_mcp_preflight": {
+        "passed": true,
+        "registered_with_provider": false
+      },
+      "idle_wake": "unverified"
+    }
+  ],
+  "room_proof": {
+    "simulated_lifecycle": "pass",
+    "sqlite_wal_preflight": "pass",
+    "native_room_connector": "not registered"
+  },
+  "platform": {
+    "host": "Windows",
+    "wsl_status": "not installed",
+    "wsl_distro_test": "not run because WSL is unavailable",
+    "room_changes": "none",
+    "interpretation": "The planned Linux-through-WSL2 managed runtime cannot be validated on this machine yet. Native Windows executable discovery remains separate evidence and does not prove WSL or cross-boundary connectivity."
+  },
+  "limits": [
+    "Live smoke turns prove provider CLI participation only; they do not prove native Room delivery.",
+    "Claude was rate-limited, so no Claude acknowledgement was available.",
+    "Idle wake requires a separate supported runtime experiment."
+  ]
+}

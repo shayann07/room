@@ -1,0 +1,69 @@
+[
+  {
+    "event": 1,
+    "type": "owner_assignment",
+    "state": "posted"
+  },
+  {
+    "event": 1,
+    "type": "owner_assignment",
+    "state": "deduplicated_retry"
+  },
+  {
+    "event": 1,
+    "recipient": "claude",
+    "state": "acknowledged"
+  },
+  {
+    "event": 1,
+    "recipient": "codex",
+    "state": "acknowledged"
+  },
+  {
+    "event": 1,
+    "recipient": "antigravity",
+    "state": "acknowledged"
+  },
+  {
+    "event": 2,
+    "recipient": "nawaz",
+    "state": "queued",
+    "kind": "message"
+  },
+  {
+    "event": 3,
+    "recipient": "claude",
+    "state": "queued",
+    "kind": "question"
+  },
+  {
+    "event": 3,
+    "recipient": "nawaz",
+    "state": "queued",
+    "kind": "question"
+  },
+  {
+    "event": 4,
+    "recipient": "nawaz",
+    "state": "queued",
+    "kind": "message"
+  },
+  {
+    "event": 5,
+    "recipient": "codex",
+    "state": "queued",
+    "kind": "idle_delivery"
+  },
+  {
+    "event": 6,
+    "recipient": "antigravity",
+    "state": "queued_disconnected",
+    "kind": "disconnect_delivery"
+  },
+  {
+    "event": 7,
+    "recipient": "nawaz",
+    "state": "queued",
+    "kind": "quota_like_failure"
+  }
+]

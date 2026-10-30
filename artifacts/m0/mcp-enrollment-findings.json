@@ -1,0 +1,19 @@
+{
+  "status": "local help-only investigation; add syntax captured",
+  "configuration_changed": false,
+  "participants": {
+    "claude": {
+      "commands_seen": ["add", "add-json", "list", "get", "remove", "login", "logout", "serve"],
+      "evidence_file": "interface-probes/claude-mcp-help.txt"
+    },
+    "codex": {
+      "commands_seen": ["list", "get", "add", "remove", "login", "logout"],
+      "evidence_file": "interface-probes/codex-mcp-help.txt"
+    },
+    "antigravity": {
+      "commands_seen": ["add", "remove", "list", "enable", "disable"],
+      "evidence_file": "interface-probes/antigravity-mcp-help.txt"
+    }
+  },
+  "interpretation": "All three tools expose an MCP configuration surface locally. This does not prove a Room MCP server can be enrolled, authenticated, delivered into an active turn, or used to wake an idle session."
+}
